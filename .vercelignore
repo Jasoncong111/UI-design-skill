@@ -1,0 +1,16 @@
+.git/
+creator-director/
+dist/*
+ip-packager/
+outline-architect/
+research-automation/
+research-verifier/
+voice-rewriter/
+zhengdao/
+*.zip
+*.md
+ui-design-skill/
+!ui-design-skill/
+ui-design-skill/*
+!ui-design-skill/README.md
+!dist/ui-design-skill.skill

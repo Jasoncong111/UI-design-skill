@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Design Skill | AI UI Design Skill for Website, Landing Page, and Dashboard Design</title>
+    <meta
+      name="description"
+      content="UI Design Skill is an AI UI design skill for website design, landing pages, product websites, and dashboards. It helps users turn structured UI design choices into one complete reusable prompt."
+    />
+    <meta
+      name="keywords"
+      content="AI UI design, UI design workflow, UI design skill, website design, landing page design, product website design, dashboard UI design, interface design"
+    />
+    <meta property="og:title" content="UI Design Skill | AI UI Design Skill for Website, Landing Page, and Dashboard Design" />
+    <meta
+      property="og:description"
+      content="Turn structured UI design choices into one complete reusable prompt for website design, landing pages, dashboards, and product websites."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UI Design Skill" />
+    <meta
+      name="twitter:description"
+      content="A UI design skill for website design, landing pages, dashboards, and product websites."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #f4f3f0;
+        --bg-soft: rgba(255, 255, 255, 0.72);
+        --panel: rgba(255, 255, 255, 0.9);
+        --panel-strong: #f8f8f6;
+        --ink: #111111;
+        --muted: #686868;
+        --line: rgba(17, 17, 17, 0.12);
+        --accent: #b42318;
+        --accent-soft: rgba(180, 35, 24, 0.1);
+        --shadow: 0 24px 80px rgba(17, 17, 17, 0.08);
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 14px;
+      }
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 34%),
+          radial-gradient(circle at 82% 18%, rgba(180, 35, 24, 0.08), transparent 22%),
+          linear-gradient(135deg, #f7f6f4 0%, #f4f3f0 46%, #f0efec 100%);
+        color: var(--ink);
+        font-family: "Manrope", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      body::before {
+        background-image:
+          linear-gradient(rgba(23, 22, 20, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 22, 20, 0.04) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.45), transparent 86%);
+      }
+
+      body::after {
+        background:
+          radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.72), transparent 16%),
+          radial-gradient(circle at 78% 70%, rgba(180, 35, 24, 0.05), transparent 18%);
+        mix-blend-mode: screen;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: min(1440px, 100%);
+        height: 100dvh;
+        margin: 0 auto;
+        padding: 16px 22px 16px;
+      }
+
+      .topbar,
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .brand-mark {
+        width: 11px;
+        height: 11px;
+        background: var(--accent);
+        border-radius: 2px;
+        box-shadow: 0 0 0 6px var(--accent-soft);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .brand-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.55rem;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-sub {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .topbar-links {
+        display: none;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 16px;
+        border-radius: 999px;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+      }
+
+      .button {
+        border: 1px solid transparent;
+        cursor: pointer;
+      }
+
+      .button-primary {
+        background: var(--ink);
+        color: #f4efe7;
+      }
+
+      .button-primary:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, 0.75);
+        border-color: var(--line);
+        color: var(--ink);
+      }
+
+      .button-secondary:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+        gap: 18px;
+        min-height: 0;
+        padding: 10px 0;
+      }
+
+      .intro,
+      .board {
+        min-height: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-xl);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: var(--shadow);
+      }
+
+      .intro {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 26px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.62)),
+          linear-gradient(140deg, rgba(255, 255, 255, 0.96), rgba(246, 245, 242, 0.88));
+        overflow: hidden;
+      }
+
+      .intro-copy {
+        width: 100%;
+        max-width: 760px;
+        margin-left: 42px;
+      }
+
+      .intro::before {
+        content: "";
+        position: absolute;
+        inset: auto -12% -18% auto;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(180, 35, 24, 0.08), transparent 68%);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.66rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        justify-content: center;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 34px;
+        height: 1px;
+        background: currentColor;
+      }
+
+      .intro h1 {
+        max-width: none;
+        white-space: nowrap;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 5.4vw, 5.2rem);
+        font-weight: 500;
+        line-height: 0.88;
+        letter-spacing: -0.05em;
+      }
+
+      .lead {
+        max-width: 56ch;
+        margin-top: 14px;
+        color: #4d493f;
+        font-size: 0.94rem;
+        line-height: 1.62;
+        text-align: left;
+        font-style: italic;
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 18px;
+        max-width: 580px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .install-card {
+        display: grid;
+        gap: 10px;
+      }
+
+      .install-copy {
+        color: #4d493f;
+        font-size: 0.84rem;
+        line-height: 1.48;
+      }
+
+      .code-block {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 10px 11px;
+        border-radius: 14px;
+        background: #111111;
+        color: #f6f4f0;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .code-block code {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.68rem;
+        line-height: 1.6;
+        word-break: break-word;
+      }
+
+      .copy-btn {
+        flex-shrink: 0;
+        min-height: 34px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        background: transparent;
+        color: #d8d1c7;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+      }
+
+      .copy-btn:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        color: #fff;
+      }
+
+      .copy-btn.ok {
+        border-color: rgba(121, 211, 159, 0.8);
+        color: #79d39f;
+      }
+
+      .micro-card {
+        padding: 13px 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .micro-label {
+        margin-bottom: 5px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.61rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .micro-value {
+        font-size: 0.84rem;
+        line-height: 1.46;
+        color: var(--ink);
+      }
+
+      .inline-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 4px;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: #111111;
+        color: #f6f4f0;
+        text-decoration: none;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.68rem;
+        line-height: 1.6;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .inline-action:hover {
+        transform: translateY(-1px);
+        opacity: 0.92;
+      }
+
+      .intro-bottom {
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 18px;
+        width: 100%;
+      }
+
+      .cta-group {
+        display: none;
+      }
+
+      .mini-note {
+        max-width: 24ch;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.62rem;
+        line-height: 1.65;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .board {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        padding: 14px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 247, 245, 0.9)),
+          var(--panel);
+        overflow: hidden;
+      }
+
+      .board-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .board-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.7rem;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+      }
+
+      .board-sub {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .board-badge {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.86);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        line-height: 1.55;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        text-decoration: none;
+        transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+      }
+
+      .board-badge:hover {
+        transform: translateY(-1px);
+        border-color: rgba(180, 35, 24, 0.32);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .board-main {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        gap: 12px;
+        min-height: 0;
+        padding: 10px 0;
+        overflow: hidden;
+      }
+
+      .stack {
+        display: grid;
+        gap: 10px;
+        min-height: 0;
+      }
+
+      .card {
+        padding: 13px 13px 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.9);
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .card-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 9px;
+      }
+
+      .card-kicker {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .card-title {
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+
+      .choice {
+        padding: 8px 9px;
+        border-radius: 12px;
+        background: rgba(17, 17, 17, 0.035);
+        font-size: 0.74rem;
+        line-height: 1.35;
+        color: #282828;
+      }
+
+      .choice strong {
+        display: block;
+        margin-bottom: 2px;
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .flow-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .flow-item {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .flow-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: #111111;
+        color: #f6f4f0;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.66rem;
+      }
+
+      .flow-copy h3 {
+        margin-bottom: 2px;
+        font-size: 0.84rem;
+      }
+
+      .flow-copy p {
+        color: var(--muted);
+        font-size: 0.75rem;
+        line-height: 1.42;
+      }
+
+      .prompt-box {
+        display: grid;
+        gap: 8px;
+        height: 100%;
+      }
+
+      .prompt-fragment {
+        padding: 10px 11px;
+        border-radius: 14px;
+        background: var(--panel-strong);
+        border: 1px solid rgba(23, 22, 20, 0.08);
+      }
+
+      .prompt-fragment .micro-label {
+        margin-bottom: 6px;
+      }
+
+      .prompt-fragment p {
+        color: #413c34;
+        font-size: 0.74rem;
+        line-height: 1.42;
+      }
+
+      .board-bottom {
+        display: block;
+        padding-top: 10px;
+        border-top: 1px solid var(--line);
+      }
+
+      .specs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .spec {
+        padding: 6px 9px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.57rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .footer {
+        padding-top: 2px;
+        color: var(--muted);
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .footer-right {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      @media (max-height: 860px) {
+        .page {
+          padding: 12px 16px;
+        }
+
+        .intro,
+        .board {
+          padding: 12px;
+        }
+
+        .intro h1 {
+          font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+        }
+
+        .lead {
+          font-size: 0.86rem;
+          line-height: 1.5;
+        }
+
+        .intro-grid {
+          margin-top: 14px;
+        }
+
+        .code-block code {
+          font-size: 0.62rem;
+        }
+
+        .intro-bottom {
+          padding-top: 14px;
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .page {
+          padding: 16px;
+        }
+
+        .intro-copy {
+          margin-left: 20px;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .intro h1 {
+          max-width: 12ch;
+        }
+
+        .board-main {
+          grid-template-columns: 1fr;
+        }
+
+        .mini-note {
+          text-align: left;
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        html, body {
+          overflow: auto;
+        }
+
+        .page {
+          height: auto;
+          min-height: 100dvh;
+          padding: 16px;
+        }
+
+        .topbar,
+        .intro-bottom,
+        .board-bottom,
+        .footer {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .topbar-links,
+        .cta-group,
+        .footer-right {
+          justify-content: flex-start;
+        }
+
+        .intro,
+        .board {
+          padding: 22px;
+        }
+
+        .intro-copy {
+          max-width: none;
+          margin-left: 0;
+        }
+
+        .intro-grid,
+        .choices {
+          grid-template-columns: 1fr;
+        }
+
+        .intro h1 {
+          white-space: normal;
+        }
+
+        .intro h1 {
+          font-size: clamp(2.8rem, 16vw, 4.4rem);
+        }
+
+        .board-title {
+          font-size: 1.7rem;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <a class="brand" href="#">
+          <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-text">
+              <span class="brand-name">UI Design Skill</span>
+              <span class="brand-sub">UI Design Skill for Modern Interfaces</span>
+            </span>
+          </a>
+
+        <div class="topbar-links">
+        </div>
+      </header>
+
+      <section class="hero">
+        <article class="intro">
+          <div class="intro-copy">
+            <p class="eyebrow">AI UI design skill for website, landing page, and dashboard design</p>
+            <h1>UI Design Skill</h1>
+            <p class="lead">
+              让 UI 设计不再困难。这是一个为网页设计、产品官网、落地页和后台界面准备的 UI design skill。它不让用户从空白输入框开始，而是通过一套结构化选项，先快速确定页面类型、视觉方向、信息密度和交互气质。
+            </p>
+
+            <div class="intro-grid">
+              <div class="micro-card install-card">
+                <div class="micro-label">Quick Install</div>
+                <p class="install-copy">把 skill 包下载到本地后，可以继续在 Codex、其他 AI 编程 CLI，以及 OpenClaw 这类环境中使用。这里放的是适合首屏展示的示例安装命令，实际目录可以按你的工具环境调整。</p>
+                <div class="code-block">
+                  <code id="installCode">cp dist/ui-design-skill.skill "$CODEX_HOME/skills/"</code>
+                  <button class="copy-btn" data-copy-target="installCode">复制</button>
+                </div>
+              </div>
+
+              <div class="micro-card">
+                <div class="micro-label">解决的问题</div>
+                <div class="micro-value">用户知道自己想要什么气质，却写不出稳定、可执行的前端 prompt。</div>
+              </div>
+              <div class="micro-card">
+                <div class="micro-label">适用页面</div>
+                <div class="micro-value">个人网站、产品官网、转化页、应用界面、后台，以及现有页面改版。</div>
+              </div>
+
+              <div class="micro-card">
+                <div class="micro-label">使用说明</div>
+                <div class="micro-value">先通过这个 skill 获得更准确的设计 prompt，再把 prompt 放到 <a class="inline-action" href="https://variant.com/" target="_blank" rel="noreferrer">Variant</a> 生成 AI 效果图，最后将确认后的方向导出给 CLI 工具或 OpenClaw 继续完成代码实现。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="intro-bottom">
+            <div class="mini-note">
+              Structured intake
+              <br />
+              clearer direction
+              <br />
+              reusable prompt
+            </div>
+          </div>
+        </article>
+
+        <aside class="board" aria-label="Skill summary board">
+          <div class="board-top">
+            <div>
+              <h2 class="board-title">A calmer way to arrive at a usable UI prompt</h2>
+              <p class="board-sub">用更少的选择，把模糊的界面想法整理成清晰、完整、可继续执行的 prompt。</p>
+            </div>
+            <a class="board-badge" href="./README.md">
+              public release
+              <br />
+              github ready
+            </a>
+          </div>
+
+          <div class="board-main">
+            <div class="stack">
+              <section class="card">
+                <div class="card-head">
+                  <div>
+                    <div class="card-kicker">Selected Direction</div>
+                    <div class="card-title">用户先做判断，再得到更稳的结果</div>
+                  </div>
+                </div>
+
+                <div class="choices">
+                  <div class="choice"><strong>Page Type</strong> Skill 产品介绍页</div>
+                  <div class="choice"><strong>Goal</strong> 第一眼讲清它能快速搞定 UI prompt</div>
+                  <div class="choice"><strong>Structure</strong> 大标题、短说明、重点卡片</div>
+                  <div class="choice"><strong>Density</strong> 信息完整，但依然干净</div>
+                  <div class="choice"><strong>Color</strong> 黑白极简，少量红色强调</div>
+                  <div class="choice"><strong>Motion</strong> 很轻微，只做气氛感</div>
+                </div>
+              </section>
+
+              <section class="card">
+                <div class="card-head">
+                  <div>
+                    <div class="card-kicker">Workflow</div>
+                    <div class="card-title">把复杂的 prompt 写作，变成一条更清楚的路径</div>
+                  </div>
+                </div>
+
+                <div class="flow-list">
+                  <div class="flow-item">
+                    <div class="flow-num">01</div>
+                    <div class="flow-copy">
+                      <h3>先问通用问题</h3>
+                      <p>先确定页面类型、核心目标和受众，避免一开始就在模糊方向里来回试错。</p>
+                    </div>
+                  </div>
+                  <div class="flow-item">
+                    <div class="flow-num">02</div>
+                    <div class="flow-copy">
+                      <h3>再做具体风格选择</h3>
+                      <p>把结构、配色、字体、图片、按钮、信息密度和设备优先级逐项收紧。</p>
+                    </div>
+                  </div>
+                  <div class="flow-item">
+                    <div class="flow-num">03</div>
+                    <div class="flow-copy">
+                      <h3>最后输出完整 prompt</h3>
+                      <p>把确认后的方向整理成一份完整 prompt，后续可以继续进入 Variant 或代码工具。</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="stack">
+              <section class="card" style="height: 100%;">
+                <div class="card-head">
+                  <div>
+                    <div class="card-kicker">Output Shape</div>
+                    <div class="card-title">最后交付的是一份可以继续使用的 prompt</div>
+                  </div>
+                </div>
+
+                <div class="prompt-box">
+                  <div class="prompt-fragment">
+                    <div class="micro-label">Final Prompt</div>
+                    <p>把页面类型、布局方向、视觉系统、信息密度、动效强度和设备优先级整理成一份完整提示词，方便继续生成效果图、页面草案或后续代码。</p>
+                  </div>
+
+                  <div class="prompt-fragment">
+                    <div class="micro-label">Privacy Boundary</div>
+                    <p>默认不把内部链接、敏感数据、未发布信息和真实客户资料直接写进第三方工具提示词。</p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="board-bottom">
+            <div class="specs">
+              <span class="spec">Skill First</span>
+              <span class="spec">Variant Friendly</span>
+              <span class="spec">Codex Ready</span>
+              <span class="spec">Privacy Aware</span>
+              <span class="spec">Single Screen</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer class="footer">
+        <div>UI Design Skill · 2026</div>
+        <div class="footer-right">
+          <span>One-page introduction</span>
+          <span>Static HTML</span>
+          <span>Vercel deployable</span>
+        </div>
+      </footer>
+    </main>
+    <script>
+      document.querySelectorAll(".copy-btn").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const target = document.getElementById(button.dataset.copyTarget);
+          if (!target) return;
+
+          try {
+            await navigator.clipboard.writeText(target.textContent.trim());
+            const original = button.textContent;
+            button.textContent = "已复制";
+            button.classList.add("ok");
+            setTimeout(() => {
+              button.textContent = original;
+              button.classList.remove("ok");
+            }, 1800);
+          } catch (_) {}
+        });
+      });
+    </script>
+  </body>
+</html>
