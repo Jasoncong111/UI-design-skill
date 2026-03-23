@@ -40,6 +40,28 @@ Core search terms this project should naturally match:
 - product website design
 - dashboard UI design
 
+### Quick install
+
+Run the remote installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash
+```
+
+Install to a custom skills directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash -s -- --dest /path/to/skills
+```
+
+Notes:
+
+- The installer downloads `dist/ui-design-skill.skill` from this repository.
+- It auto-detects Codex via `$CODEX_HOME/skills`.
+- It also tries OpenClaw-style locations as a best effort only.
+- If auto-detection fails, pass `--dest` or set `SKILL_DIR` manually.
+- Existing installs are not overwritten unless `--force` is used.
+
 ### Website
 
 `index.html` is a one-screen product landing page for the skill. It is designed to deploy cleanly to Vercel as a static site.

@@ -44,6 +44,22 @@ This skill solves that by replacing vague taste language with concrete design de
 - Better handoff: one stronger prompt is easier to reuse across Variant, Codex, GPT-5.4, CLI tools, and later implementation steps.
 - Safer sharing: the skill includes guidance for keeping sensitive product details out of third-party visual tools.
 
+## Install
+
+Recommended remote installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash
+```
+
+If your CLI uses a custom skills directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash -s -- --dest /path/to/skills
+```
+
+The installer auto-detects Codex via `$CODEX_HOME/skills` and tries a few OpenClaw-style locations as a best effort. If your environment is different, pass `--dest` explicitly.
+
 ## Workflow
 
 1. Ask three universal questions.

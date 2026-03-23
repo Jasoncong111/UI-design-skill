@@ -785,9 +785,9 @@
             <div class="intro-grid">
               <div class="micro-card install-card">
                 <div class="micro-label">Quick Install</div>
-                <p class="install-copy">把 skill 包下载到本地后，可以继续在 Codex、其他 AI 编程 CLI，以及 OpenClaw 这类环境中使用。这里放的是适合首屏展示的示例安装命令，实际目录可以按你的工具环境调整。</p>
+                <p class="install-copy">现在支持真正的一键远程安装。脚本会优先识别 Codex，也会尝试识别 OpenClaw；如果没识别到，你也可以用 <code>--dest</code> 手动指定 skills 目录。</p>
                 <div class="code-block">
-                  <code id="installCode">cp dist/ui-design-skill.skill "$CODEX_HOME/skills/"</code>
+                  <code id="installCode">curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash</code>
                   <button class="copy-btn" data-copy-target="installCode">复制</button>
                 </div>
               </div>
