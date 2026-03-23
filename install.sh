@@ -158,7 +158,7 @@ main() {
 
   local tmp_file
   tmp_file="$(mktemp)"
-  trap 'rm -f "$tmp_file"' EXIT
+  trap 'rm -f "${tmp_file:-}"' EXIT
 
   download_skill "$tmp_file"
 
