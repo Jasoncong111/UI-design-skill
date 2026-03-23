@@ -54,11 +54,11 @@ Install to a custom skills directory:
 curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash -s -- --dest /path/to/skills
 ```
 
-Notes:
+**Notes:**
 
 - The installer downloads `dist/ui-design-skill.skill` from this repository.
 - It auto-detects Codex via `$CODEX_HOME/skills`.
-- It also tries OpenClaw-style locations as a best effort only.
+- It also tries OpenClaw-style locations as a best effort.
 - If auto-detection fails, pass `--dest` or set `SKILL_DIR` manually.
 - Existing installs are not overwritten unless `--force` is used.
 
@@ -118,6 +118,28 @@ UI 设计技能是一个即用型 GitHub 软件包，包含：
 - 落地页设计
 - 产品网站设计
 - 仪表盘 UI 设计
+
+### 快速安装指令
+
+运行远程安装程序：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash
+```
+
+安装到自定义 skills 目录：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Jasoncong111/UI-design-skill/main/install.sh | bash -s -- --dest /path/to/skills
+```
+
+**说明：**
+
+- 安装程序会从本仓库下载 `dist/ui-design-skill.skill`。
+- 自动检测 Codex (`$CODEX_HOME/skills`)。
+- 也会尝试检测 OpenClaw 风格的位置。
+- 如果自动检测失败，请传递 `--dest` 参数或手动设置 `SKILL_DIR`。
+- 除非使用 `--force`，否则不会覆盖已存在的安装。
 
 ### 网站
 
